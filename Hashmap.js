@@ -95,29 +95,11 @@ export default class Hashmap {
     }
 
     keys() {
-        const keys = [];
-
-        this.buckets.forEach(bucketList => {
-            if(bucketList === null) return
-
-            const bucketListKeys = bucketList.getKeys();
-            keys.push(...bucketListKeys);
-        })
-
-        return keys;
+        return this.entries().map(entry => entry[0]);
     }
 
     values() {
-        const values = [];
-
-        this.buckets.forEach(bucketList => {
-            if(bucketList === null) return
-
-            const bucketListValues = bucketList.getValues();
-            values.push(...bucketListValues);
-        })
-
-        return values;
+        return this.entries().map(entry => entry[1]);
     }
 
     entries() {
