@@ -40,6 +40,18 @@ export default class LinkedList {
         return null;
     }
 
+    getKeys() {
+        let current = this.head;
+        const keys = [];
+
+        while(current) {
+            keys.push(current.key);
+            current = current.nextNode;
+        }
+
+        return keys;
+    }
+
     toString() {
         if(!this.head) return "";
 

@@ -93,4 +93,17 @@ export default class Hashmap {
         this.buckets.fill(null);
         this.size = 0;
     }
+
+    keys() {
+        const keys = [];
+
+        this.buckets.forEach(bucketList => {
+            if(bucketList === null) return
+
+            const bucketListKeys = bucketList.getKeys();
+            keys.push(...bucketListKeys);
+        })
+
+        return keys;
+    }
 }
