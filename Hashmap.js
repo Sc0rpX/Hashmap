@@ -106,4 +106,17 @@ export default class Hashmap {
 
         return keys;
     }
+
+    values() {
+        const values = [];
+
+        this.buckets.forEach(bucketList => {
+            if(bucketList === null) return
+
+            const bucketListValues = bucketList.getValues();
+            values.push(...bucketListValues);
+        })
+
+        return values;
+    }
 }
