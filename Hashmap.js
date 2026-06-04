@@ -1,7 +1,12 @@
-class Hashmap {
+import LinkedList from "./LinkedList.js";
+
+export default class Hashmap {
     constructor(capacity = 16) {
         this.capacity = capacity;
         this.loadFactor = 0.75;
+        this.size = 0;
+
+        this.buckets = new Array(this.capacity).fill(null);
     }
 
     hash(key) {
@@ -14,4 +19,38 @@ class Hashmap {
 
         return hashCode;
     } 
+
+    set(key, value) {
+        const index = this.hash(key);
+
+        if(this.buckets[index] === null) {
+            this.buckets[index] = new LinkedList();
+        }
+
+        const bucketList = this.buckets[index];
+
+        const existingNode = bucketList.find(key);
+        if(existingNode === null) {
+            bucketList.append(key, value);
+            this.size++
+        } else {
+            existingNode.value = value;
+        }
+
+        if(this.size > this.capacity * this.loadFactor) {
+            this.grow();
+        }
+    }
+
+    grow(){
+        console.log("The array size exceeded, need to refactor!")
+    }
+
+    get(key) {
+        const index = this.hash(key);
+        const bucketList = this.buckets[index];
+        const node = bucketList.find(key);
+
+        return node ? node.value : null;
+    }
 }
