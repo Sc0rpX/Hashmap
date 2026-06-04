@@ -53,4 +53,15 @@ export default class Hashmap {
 
         return node ? node.value : null;
     }
+
+    has(key) {
+        const index = this.hash(key);
+        const bucketList = this.buckets[index];
+
+        if(bucketList === null) return false;
+        
+        const node = bucketList.find(key);
+
+        return node === null ? false : true;
+    }
 }
