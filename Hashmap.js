@@ -43,12 +43,21 @@ export default class Hashmap {
     }
 
     grow(){
-        console.log("The array size exceeded, need to refactor!")
+        const existingEntries = oldBuckets.entries();
+
+        this.capacity *= 2;
+        this.buckets = new Array(this.capacity).fill(null);
+        this.size = 0;
+
+        existingEntries.forEach(entry => {
+            this.set(...entry)
+        })
     }
 
     get(key) {
         const index = this.hash(key);
         const bucketList = this.buckets[index];
+        if(bucketList === null) return null;
         const node = bucketList.find(key);
 
         return node ? node.value : null;
