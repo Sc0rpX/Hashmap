@@ -64,4 +64,24 @@ export default class Hashmap {
 
         return node === null ? false : true;
     }
+
+    remove(key) {
+        const index = this.hash(key);
+        const bucketList = this.buckets[index];
+
+        if(bucketList === null) return false;
+
+        const wasRemoved = bucketList.remove(key);
+
+        if(bucketList.head === null) {
+            this.buckets[index] = null;
+        }
+
+        if(wasRemoved) {
+            this.size--;
+            return true;
+        }
+
+        return false;
+    }
 }
