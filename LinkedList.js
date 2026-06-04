@@ -24,10 +24,6 @@ export default class LinkedList {
         this.size++;
     }
 
-    getSize() {
-        return this.size;
-    }
-
     find(key) {
         let current = this.head;
 
@@ -52,21 +48,6 @@ export default class LinkedList {
         }
 
         return entries;
-    }
-
-    toString() {
-        if(!this.head) return "";
-
-        let current = this.head;
-        let result = "";
-
-        while(current) {
-            result += `( ${current.key} ) -> `;
-            current = current.nextNode;
-        }
-
-        result += 'null';
-        return result;
     }
 
     remove(key) {
