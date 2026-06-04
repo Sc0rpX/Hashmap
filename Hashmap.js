@@ -119,4 +119,17 @@ export default class Hashmap {
 
         return values;
     }
+
+    entries() {
+        const entries = [];
+
+        this.buckets.forEach(bucketList => {
+            if(bucketList === null) return;
+
+            const bucketListEntries = bucketList.getEntries();
+            entries.push(...bucketListEntries);
+        })
+
+        return entries;
+    }
 }
