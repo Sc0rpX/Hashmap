@@ -84,4 +84,13 @@ export default class Hashmap {
 
         return false;
     }
+
+    length() {
+        return this.size;
+    }
+
+    clear() {
+        this.buckets.fill(null);
+        this.size = 0;
+    }
 }
